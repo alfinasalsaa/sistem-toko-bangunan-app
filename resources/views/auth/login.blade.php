@@ -64,7 +64,7 @@
                     </div>
                 </div>
 
-                <!-- Default Accounts Info -->
+                {{-- <!-- Default Accounts Info -->
                 <div class="card mt-3">
                     <div class="card-body bg-info text-white">
                         <h6>🔑 Default Accounts:</h6>
@@ -73,7 +73,7 @@
                             <strong>Customer:</strong> customer@example.com / password
                         </small>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>

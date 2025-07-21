@@ -1,0 +1,70 @@
+{
+  "receipt_info": {
+    "transaction_code": "TRX202507080003",
+    "customer_name": "alfina salsa",
+    "customer_email": "alfina@customer.com",
+    "customer_phone": "081234567775",
+    "customer_address": "jalan Soekarno Hatta No 27",
+    "transaction_date": "08/07/2025 07:21",
+    "payment_method": "COD",
+    "status": "APPROVED",
+    "items": [
+      {
+        "no": 1,
+        "product": "Bata Putih",
+        "price": 3500,
+        "qty": 100,
+        "unit": "buah",
+        "subtotal": 350000
+      },
+      {
+        "no": 2,
+        "product": "Semen Gresik",
+        "price": 65000,
+        "qty": 10,
+        "unit": "sak",
+        "subtotal": 650000
+      }
+    ],
+    "total_amount": 1000000,
+    "generated_at": "08/07/2025 07:21:21",
+    "hash_preview": "c124c7a4"
+  },
+  "test_results": {
+    "consistency": {
+      "passed": true,
+      "unique_hashes": 1,
+      "hash_preview": "ce368ceb",
+      "performance_hps": 99983.40882002383
+    },
+    "avalanche": {
+      "passed": false,
+      "average": 39.921875,
+      "variations_tested": 5,
+      "good_variations": 4
+    },
+    "signature": {
+      "passed": false,
+      "success_rate": 0.0,
+      "avg_sign_time_ms": 0,
+      "avg_verify_time_ms": 0
+    },
+    "qr_code": {
+      "passed": false,
+      "signature_valid": false,
+      "hash_integrity": false
+    },
+    "production_load": {
+      "passed": true,
+      "throughput": 20424.152707440593,
+      "hash_rate": 268097.9876580355,
+      "performance_score": 100.0
+    }
+  },
+  "test_timestamp": "20250709_102015",
+  "test_summary": {
+    "total_tests": 5,
+    "passed_tests": 2,
+    "success_rate": 40.0
+  }
+}

@@ -1,4 +1,3 @@
-// resources/views/receipts/verification-result.blade.php
 
 @extends('layouts.app')
 

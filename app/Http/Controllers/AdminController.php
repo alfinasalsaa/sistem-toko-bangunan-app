@@ -7,7 +7,7 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\Transaction;
 use App\Models\User;
-use App\Services\PDFReceiptService; 
+use App\Services\PDFReceiptService;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -136,10 +136,15 @@ class AdminController extends Controller
 
         $data = $request->only(['name', 'description', 'price', 'stock', 'unit', 'category_id']);
 
+        // if ($request->hasFile('image')) {
+        //     $imageName = time() . '.' . $request->image->extension();
+        //     $request->image->move(public_path('images/products'), $imageName);
+        //     $data['image'] = $imageName;
+        // }
         if ($request->hasFile('image')) {
             $imageName = time() . '.' . $request->image->extension();
-            $request->image->move(public_path('images/products'), $imageName);
-            $data['image'] = $imageName;
+            $request->image->storeAs('public/images/products', $imageName); // simpan di storage/app/public/images/products
+            $data['image'] = 'storage/images/products/' . $imageName; // path yang bisa digunakan di URL
         }
 
         Product::create($data);
@@ -168,13 +173,16 @@ class AdminController extends Controller
         $data = $request->only(['name', 'description', 'price', 'stock', 'unit', 'category_id']);
 
         if ($request->hasFile('image')) {
-            // Delete old image
-            if ($product->image && file_exists(public_path('images/products/' . $product->image))) {
-                unlink(public_path('images/products/' . $product->image));
+            // Hapus gambar lama jika ada
+            if ($product->image && Storage::exists('public/images/products/' . $product->image)) {
+                Storage::delete('public/images/products/' . $product->image);
             }
 
+            // Simpan gambar baru
             $imageName = time() . '.' . $request->image->extension();
-            $request->image->move(public_path('images/products'), $imageName);
+            $request->image->storeAs('public/images/products', $imageName);
+
+            // Simpan nama file ke database (path relatif ke 'public/storage')
             $data['image'] = $imageName;
         }
 
@@ -223,7 +231,7 @@ class AdminController extends Controller
         try {
             $pdfService = app(PDFReceiptService::class);
             $pdfService->generateSignedReceipt($transaction);
-            
+
             return redirect()->back()->with('success', 'Transaksi berhasil disetujui dan kuitansi telah dibuat');
         } catch (\Exception $e) {
             \Log::error('Failed to generate receipt: ' . $e->getMessage());

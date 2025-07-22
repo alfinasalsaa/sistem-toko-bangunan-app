@@ -12,7 +12,7 @@ class PythonServiceClient
     
     public function __construct()
     {
-        $this->baseUrl = config('services.python.url', 'http://localhost:5000');
+        $this->baseUrl = config('services.python.url', 'https://jayabangunan.my.id/appjaya/');
     }
     
     /**

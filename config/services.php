@@ -32,7 +32,7 @@ return [
     ],
 
         'python' => [
-        'url' => env('PYTHON_SERVICE_URL', 'http://localhost:5000'),
+        'url' => env('PYTHON_SERVICE_URL', 'https://jayabangunan.my.id/appjaya/'),
     ],
 
 ];
